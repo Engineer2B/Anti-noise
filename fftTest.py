@@ -14,7 +14,7 @@ CHANNELS = 1
 RATE = 11025 * 1
 RECORD_SECONDS = 20
 
-j = np.complex(0, 1)
+j = np.cdouble((0,1))
 
 pyAudio = pyaudio.PyAudio()
 stream = pyAudio.open(format=pyAudio.get_format_from_width(WIDTH),
@@ -48,8 +48,8 @@ x = np.linspace(0.0, N*T, N)
 y = np.sin(50.0 * 2.0*np.pi*x) + 0.5*np.sin(80.0 * 2.0*np.pi*x)
 yf = fft(y)
 yf2 = np.fft.fft(y)
-xf = np.linspace(0.0, 1.0/(2.0*T), N/2)
+xf = np.linspace(0.0, 1.0/(2.0*T), round(N/2))
 import matplotlib.pyplot as plt
-plt.plot(xf, 2.0/N * np.abs(yf[0:N/2]))
+plt.plot(xf, 2.0/N * np.abs(yf[0:round(N/2)]))
 plt.grid()
 plt.show()
